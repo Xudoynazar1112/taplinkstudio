@@ -1,0 +1,542 @@
+{
+  "users": [
+    {
+      "id": "user_demo_1",
+      "email": "demo@linkstudio.uz",
+      "name": "Demo Admin",
+      "password_hash": "64ae9ea292a548f970eddb6d81883d5a:fd183eb689e3d8ae4817d93803ab3fe02992c48e090230aebea0f06da4948ce8",
+      "role": "admin",
+      "createdAt": 1788631217424
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "ws_demo_1",
+      "name": "Asosiy Workspace",
+      "ownerId": "user_demo_1",
+      "createdAt": 1788631217424
+    }
+  ],
+  "tokens": {
+    "demo-token-12345": {
+      "userId": "user_demo_1",
+      "createdAt": 1788631217424
+    },
+    "vAqEdRMTcsYGmc2wYMixlIFyEb9MDA_XhrFrdJE7fmc": {
+      "userId": "user_demo_1",
+      "createdAt": 1788631217475
+    }
+  },
+  "pages": {
+    "demo": {
+      "id": "demo",
+      "slug": "demo",
+      "userId": "user_demo_1",
+      "workspaceId": "ws_demo_1",
+      "plan": "business",
+      "title": "Studio Nova",
+      "bio": "Ijtimoiy tarmoqlar uchun savdo mini-sayti.",
+      "avatar": "",
+      "theme": {
+        "id": "minimal",
+        "name": "Minimal",
+        "background": "#f7f7f2",
+        "surface": "#ffffff",
+        "text": "#1f2933",
+        "accent": "#0f766e",
+        "radius": 8,
+        "button": "solid"
+      },
+      "settings": {
+        "customDomain": "",
+        "seoTitle": "Studio Nova",
+        "seoDescription": "Link-in-bio sahifa",
+        "hideBranding": true,
+        "pixels": "",
+        "notifications": {
+          "email": "",
+          "telegram": ""
+        },
+        "paymentProviders": [
+          {
+            "id": "manual",
+            "name": "Manual payment",
+            "enabled": true
+          },
+          {
+            "id": "click",
+            "name": "Click demo",
+            "enabled": true
+          },
+          {
+            "id": "payme",
+            "name": "Payme demo",
+            "enabled": true
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "id": "hero1",
+          "type": "avatar",
+          "title": "Studio Nova",
+          "subtitle": "Marketing va dizayn xizmatlari"
+        },
+        {
+          "id": "msg1",
+          "type": "messengers",
+          "title": "Tez aloqa",
+          "items": [
+            {
+              "label": "Telegram",
+              "url": "https://t.me/example"
+            },
+            {
+              "label": "WhatsApp",
+              "url": "https://wa.me/998901234567"
+            }
+          ]
+        },
+        {
+          "id": "price1",
+          "type": "pricing",
+          "title": "Paketlar",
+          "plans": [
+            {
+              "name": "Start",
+              "price": 490000,
+              "features": [
+                "Audit",
+                "Reja",
+                "1 konsultatsiya"
+              ],
+              "button": "Tanlash"
+            },
+            {
+              "name": "Business",
+              "price": 1500000,
+              "features": [
+                "Landing",
+                "Forma",
+                "Analytics"
+              ],
+              "button": "Buyurtma"
+            }
+          ]
+        },
+        {
+          "id": "form1",
+          "type": "form",
+          "title": "Ariza qoldiring",
+          "fields": [
+            {
+              "name": "name",
+              "label": "Ism",
+              "required": true
+            },
+            {
+              "name": "phone",
+              "label": "Telefon",
+              "required": true
+            }
+          ],
+          "payment": {
+            "enabled": false,
+            "amount": 0
+          }
+        }
+      ],
+      "pages": [
+        {
+          "id": "about",
+          "title": "Biz haqimizda",
+          "blocks": [
+            {
+              "id": "about-text",
+              "type": "text",
+              "title": "Biz haqimizda",
+              "text": "Ichki sahifa demo matni."
+            }
+          ]
+        }
+      ],
+      "createdAt": 1788631217424,
+      "updatedAt": 1788631217424
+    },
+    "my-portfolio": {
+      "id": "my-portfolio",
+      "slug": "my-portfolio",
+      "userId": "user_demo_1",
+      "title": "Mening Portfolio Sahifam",
+      "plan": "business",
+      "bio": "",
+      "avatar": "",
+      "theme": {
+        "id": "minimal",
+        "name": "Minimal",
+        "background": "#f7f7f2",
+        "surface": "#ffffff",
+        "text": "#1f2933",
+        "accent": "#0f766e",
+        "radius": 8,
+        "button": "solid"
+      },
+      "settings": {
+        "customDomain": "",
+        "seoTitle": "Mening Portfolio Sahifam",
+        "seoDescription": "Link-in-bio sahifa",
+        "hideBranding": false,
+        "pixels": "",
+        "notifications": {
+          "email": "demo@linkstudio.uz",
+          "telegram": ""
+        },
+        "paymentProviders": [
+          {
+            "id": "manual",
+            "name": "Manual payment",
+            "enabled": true
+          },
+          {
+            "id": "click",
+            "name": "Click demo",
+            "enabled": true
+          },
+          {
+            "id": "payme",
+            "name": "Payme demo",
+            "enabled": true
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "id": "avatar2",
+          "type": "avatar",
+          "title": "Creator Profile",
+          "subtitle": "Kontent, kurslar va hamkorlik"
+        },
+        {
+          "id": "links2",
+          "type": "links",
+          "title": "Muhim havolalar",
+          "items": [
+            {
+              "label": "YouTube",
+              "url": "https://youtube.com"
+            },
+            {
+              "label": "Instagram",
+              "url": "https://instagram.com"
+            }
+          ]
+        },
+        {
+          "id": "video2",
+          "type": "video",
+          "title": "Oxirgi video",
+          "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        },
+        {
+          "id": "faq2",
+          "type": "faq",
+          "title": "FAQ",
+          "items": [
+            {
+              "q": "Hamkorlik qilasizmi?",
+              "a": "Ha, brief yuboring."
+            }
+          ]
+        }
+      ],
+      "pages": [],
+      "createdAt": 1788631242195,
+      "updatedAt": 1788631242195
+    }
+  },
+  "leads": [],
+  "orders": [],
+  "payments": [],
+  "events": [
+    {
+      "id": "4cac8584ce8b4778a68188db43421634",
+      "pageSlug": "my-portfolio",
+      "event": "view",
+      "meta": {},
+      "createdAt": 1788631249279
+    },
+    {
+      "id": "34392aaee65e4a0394e9a369beda4b95",
+      "pageSlug": "my-portfolio",
+      "event": "view",
+      "meta": {},
+      "createdAt": 1788631472576
+    }
+  ],
+  "templates": [
+    {
+      "id": "business-services",
+      "name": "Business services",
+      "category": "business",
+      "blocks": [
+        {
+          "id": "hero1",
+          "type": "avatar",
+          "title": "Studio Nova",
+          "subtitle": "Marketing va dizayn xizmatlari"
+        },
+        {
+          "id": "msg1",
+          "type": "messengers",
+          "title": "Tez aloqa",
+          "items": [
+            {
+              "label": "Telegram",
+              "url": "https://t.me/example"
+            },
+            {
+              "label": "WhatsApp",
+              "url": "https://wa.me/998901234567"
+            }
+          ]
+        },
+        {
+          "id": "price1",
+          "type": "pricing",
+          "title": "Paketlar",
+          "plans": [
+            {
+              "name": "Start",
+              "price": 490000,
+              "features": [
+                "Audit",
+                "Reja",
+                "1 konsultatsiya"
+              ],
+              "button": "Tanlash"
+            },
+            {
+              "name": "Business",
+              "price": 1500000,
+              "features": [
+                "Landing",
+                "Forma",
+                "Analytics"
+              ],
+              "button": "Buyurtma"
+            }
+          ]
+        },
+        {
+          "id": "form1",
+          "type": "form",
+          "title": "Ariza qoldiring",
+          "fields": [
+            {
+              "name": "name",
+              "label": "Ism",
+              "required": true
+            },
+            {
+              "name": "phone",
+              "label": "Telefon",
+              "required": true
+            }
+          ],
+          "payment": {
+            "enabled": false,
+            "amount": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "creator-bio",
+      "name": "Creator bio",
+      "category": "creator",
+      "blocks": [
+        {
+          "id": "avatar2",
+          "type": "avatar",
+          "title": "Creator Profile",
+          "subtitle": "Kontent, kurslar va hamkorlik"
+        },
+        {
+          "id": "links2",
+          "type": "links",
+          "title": "Muhim havolalar",
+          "items": [
+            {
+              "label": "YouTube",
+              "url": "https://youtube.com"
+            },
+            {
+              "label": "Instagram",
+              "url": "https://instagram.com"
+            }
+          ]
+        },
+        {
+          "id": "video2",
+          "type": "video",
+          "title": "Oxirgi video",
+          "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        },
+        {
+          "id": "faq2",
+          "type": "faq",
+          "title": "FAQ",
+          "items": [
+            {
+              "q": "Hamkorlik qilasizmi?",
+              "a": "Ha, brief yuboring."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop",
+      "name": "Mini shop",
+      "category": "store",
+      "blocks": [
+        {
+          "id": "avatar3",
+          "type": "avatar",
+          "title": "Mini Market",
+          "subtitle": "Mahsulotlar, chegirmalar va yetkazish"
+        },
+        {
+          "id": "products3",
+          "type": "products",
+          "title": "Mahsulotlar",
+          "layout": "grid",
+          "items": [
+            {
+              "id": "p1",
+              "name": "Digital guide",
+              "price": 99000,
+              "oldPrice": 149000,
+              "description": "PDF va bonus materiallar",
+              "digital": true
+            },
+            {
+              "id": "p2",
+              "name": "Konsultatsiya",
+              "price": 299000,
+              "description": "60 daqiqa Zoom"
+            }
+          ]
+        },
+        {
+          "id": "timer3",
+          "type": "timer",
+          "title": "Aksiya tugashiga",
+          "deadline": 1788804017424
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "background": "#f7f7f2",
+      "surface": "#ffffff",
+      "text": "#1f2933",
+      "accent": "#0f766e",
+      "radius": 8,
+      "button": "solid"
+    },
+    {
+      "id": "studio",
+      "name": "Studio",
+      "background": "#edf5f3",
+      "surface": "#ffffff",
+      "text": "#172326",
+      "accent": "#e11d48",
+      "radius": 4,
+      "button": "outline"
+    },
+    {
+      "id": "night",
+      "name": "Night",
+      "background": "#111827",
+      "surface": "#1f2937",
+      "text": "#f8fafc",
+      "accent": "#38bdf8",
+      "radius": 8,
+      "button": "solid"
+    },
+    {
+      "id": "commerce",
+      "name": "Commerce",
+      "background": "#fff7ed",
+      "surface": "#ffffff",
+      "text": "#292524",
+      "accent": "#ea580c",
+      "radius": 6,
+      "button": "solid"
+    },
+    {
+      "id": "creator",
+      "name": "Creator",
+      "background": "#fdf2f8",
+      "surface": "#ffffff",
+      "text": "#312e81",
+      "accent": "#7c3aed",
+      "radius": 8,
+      "button": "soft"
+    },
+    {
+      "id": "pro",
+      "name": "Pro Dark",
+      "background": "#0f172a",
+      "surface": "#172033",
+      "text": "#e2e8f0",
+      "accent": "#22c55e",
+      "radius": 2,
+      "button": "solid"
+    }
+  ],
+  "featureMatrix": {
+    "basic": [
+      "tayyor dizaynlar",
+      "custom design",
+      "cheksiz link",
+      "text blocks",
+      "custom block basic",
+      "messenger/social links",
+      "maps",
+      "page views",
+      "shared access",
+      "QR code"
+    ],
+    "pro": [
+      "landing templates",
+      "images/video/music",
+      "price lists",
+      "custom HTML",
+      "social pixels",
+      "scheduled blocks",
+      "click analytics",
+      "advanced custom block"
+    ],
+    "business": [
+      "internal pages",
+      "digital products",
+      "forms",
+      "payments",
+      "hide branding",
+      "CRM",
+      "automatic emails",
+      "lead/payment notifications",
+      "countdown timer",
+      "custom domain",
+      "SSL field",
+      "business modules",
+      "online store",
+      "cash register integration placeholder"
+    ]
+  }
+}
