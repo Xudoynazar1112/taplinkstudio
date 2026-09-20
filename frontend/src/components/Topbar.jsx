@@ -58,36 +58,40 @@ export default function Topbar({
           type="button"
           className="topbar-btn theme-mode-toggle-btn"
           onClick={onToggleColorMode}
-          title={colorMode === 'dark' ? 'Kunduzgi rejimga o\'tish (Light Mode)' : 'Tungi rejimga o\'tish (Dark Mode)'}
+          title={colorMode === 'dark' ? 'Kunduzgi rejim (Light Mode)' : 'Tungi rejim (Dark Mode)'}
         >
-          {colorMode === 'dark' ? '☀️ Kunduzgi' : '🌙 Tungi'}
+          <span className="theme-icon-text">{colorMode === 'dark' ? '☀️' : '🌙'}</span>
+          <span className="desktop-only-btn-label">{colorMode === 'dark' ? ' Kunduzgi' : ' Tungi'}</span>
         </button>
 
         <button
           type="button"
-          className="topbar-btn secondary"
+          className="topbar-btn secondary desktop-only-btn"
           onClick={handleCopy}
         >
-          {copied ? '✅ Nusxalandi!' : '🔗 Havolani nusxalash'}
+          {copied ? '✅ Nusxalandi!' : '🔗 Havola'}
         </button>
 
         <a
           href={publicUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="topbar-btn secondary"
+          className="topbar-btn secondary topbar-preview-link"
+          title="Sahifani ochish"
         >
-          ↗ Saytni ochish
+          <span>↗</span>
+          <span className="desktop-only-btn-label"> Ko'rish</span>
         </a>
 
         <button
           type="button"
           disabled={isSaving}
-          className="topbar-btn primary"
+          className="topbar-btn primary topbar-save-btn"
           onClick={onSavePage}
           title="O'zgarishlarni saqlash (Ctrl+S)"
         >
-          {isSaving ? 'Saqlanmoqda...' : '💾 Saqlash'}
+          <span>💾</span>
+          <span>{isSaving ? '...' : 'Saqlash'}</span>
         </button>
       </div>
     </header>
