@@ -25,6 +25,7 @@ export default function BuilderView({
   const [deviceType, setDeviceType] = useState('iphone'); // 'iphone' | 'ipad' | 'macbook' | 'frameless'
   const [previewMode, setPreviewMode] = useState('edit'); // 'edit' | 'live'
   const [zoomScale, setZoomScale] = useState(1);
+  const [mobileBuilderTab, setMobileBuilderTab] = useState('canvas'); // 'canvas' | 'editor'
 
   const blocks = activePage?.blocks || [];
 
@@ -335,8 +336,26 @@ export default function BuilderView({
 
   return (
     <div className="builder-view-container">
+      {/* Mobile Top Segmented Switcher */}
+      <div className="mobile-builder-segmented-bar">
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileBuilderTab === 'canvas' ? 'active' : ''}`}
+          onClick={() => setMobileBuilderTab('canvas')}
+        >
+          📱 Jonli Ko'rinish
+        </button>
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileBuilderTab === 'editor' ? 'active' : ''}`}
+          onClick={() => setMobileBuilderTab('editor')}
+        >
+          ⚙️ Bloklar & Tahrir ({blocks.length})
+        </button>
+      </div>
+
       {/* Left Column: Blocks Manager & Editors */}
-      <div className="builder-blocks-column">
+      <div className={`builder-blocks-column ${mobileBuilderTab === 'canvas' ? 'mobile-hidden-column' : ''}`}>
         <div className="view-page-header">
           <div className="header-title-actions">
             <div>
@@ -526,7 +545,7 @@ export default function BuilderView({
       </div>
 
       {/* Right Column: Sticky Live Phone Preview with Canvas Toolbar */}
-      <div className="builder-phone-preview-column">
+      <div className={`builder-phone-preview-column ${mobileBuilderTab === 'editor' ? 'mobile-hidden-column' : ''}`}>
         <div className="sticky-phone-container">
           {/* Top Canvas Controls Bar */}
           <div className="preview-top-toolbar">
@@ -622,7 +641,12 @@ export default function BuilderView({
               previewMode={previewMode}
               scale={zoomScale}
               selectedBlockId={editingBlock?.id}
-              onSelectBlock={(block) => setEditingBlock(block)}
+              onSelectBlock={(block) => {
+                setEditingBlock(block);
+                if (window.innerWidth <= 768) {
+                  setMobileBuilderTab('editor');
+                }
+              }}
               onMoveBlock={handleMoveBlock}
               onDuplicateBlock={handleDuplicateBlock}
               onToggleHideBlock={handleToggleHideBlock}
@@ -635,6 +659,27 @@ export default function BuilderView({
               onProductClick={onOpenCheckout}
               onPricingClick={onOpenCheckout}
             />
+          </div>
+
+          {/* Floating Mobile Canvas Action Bar */}
+          <div className="mobile-canvas-floating-pills">
+            <button
+              type="button"
+              className="m-fab-pill m-fab-add"
+              onClick={() => {
+                setInsertTargetIndex(null);
+                setIsAddDrawerOpen(true);
+              }}
+            >
+              ➕ Blok qo'shish
+            </button>
+            <button
+              type="button"
+              className="m-fab-pill m-fab-edit"
+              onClick={() => setMobileBuilderTab('editor')}
+            >
+              ⚙️ Bloklar ({blocks.length})
+            </button>
           </div>
         </div>
       </div>

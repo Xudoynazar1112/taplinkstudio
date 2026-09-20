@@ -39,7 +39,7 @@ export default function CRMView({ activePage }) {
   };
 
   const handleExportCSV = () => {
-    window.open(`http://localhost:8000/api/leads/export.csv${activePage?.slug ? `?slug=${activePage.slug}` : ''}`, '_blank');
+    window.open(`/api/leads/export${activePage?.slug ? `?slug=${activePage.slug}` : ''}`, '_blank');
   };
 
   // Helper to extract phone or contact

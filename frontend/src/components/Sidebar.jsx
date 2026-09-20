@@ -10,6 +10,8 @@ export default function Sidebar({
   onOpenNewPageModal,
   onOpenAuthModal,
   onLogout,
+  isMobileDrawerOpen = false,
+  onCloseMobileDrawer = () => {},
 }) {
   const [pageDropdownOpen, setPageDropdownOpen] = useState(false);
 
@@ -25,16 +27,48 @@ export default function Sidebar({
     { id: 'settings', label: 'Sozlamalar', icon: '⚙️' },
   ];
 
+  const handleNavClick = (tabId) => {
+    setActiveTab(tabId);
+    onCloseMobileDrawer();
+  };
+
   return (
-    <aside className="sidebar">
-      {/* Brand Header */}
-      <div className="brand-wrap">
-        <div className="brand-logo-sidebar" onClick={() => setActiveTab('builder')}>
-          <span className="logo-badge">⚡</span>
-          <span className="brand">LinkStudio</span>
-          <span className="brand-badge">PRO</span>
+    <>
+      {/* Mobile Drawer Backdrop */}
+      {isMobileDrawerOpen && (
+        <div
+          className="mobile-sidebar-backdrop"
+          onClick={onCloseMobileDrawer}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside className={`sidebar ${isMobileDrawerOpen ? 'mobile-drawer-open' : ''}`}>
+        {/* Mobile close button in drawer */}
+        <div className="mobile-drawer-header">
+          <div className="brand-logo-sidebar" onClick={() => handleNavClick('builder')}>
+            <span className="logo-badge">⚡</span>
+            <span className="brand">LinkStudio</span>
+            <span className="brand-badge">PRO</span>
+          </div>
+          <button
+            type="button"
+            className="mobile-drawer-close-btn"
+            onClick={onCloseMobileDrawer}
+            title="Yopish"
+          >
+            ✕
+          </button>
         </div>
-      </div>
+
+        {/* Brand Header for Desktop */}
+        <div className="brand-wrap desktop-only-brand">
+          <div className="brand-logo-sidebar" onClick={() => setActiveTab('builder')}>
+            <span className="logo-badge">⚡</span>
+            <span className="brand">LinkStudio</span>
+            <span className="brand-badge">PRO</span>
+          </div>
+        </div>
 
       {/* Page Switcher */}
       <div className="sidebar-page-switcher">
@@ -87,7 +121,7 @@ export default function Sidebar({
             key={item.id}
             type="button"
             className={`nav ${activeTab === item.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(item.id)}
+            onClick={() => handleNavClick(item.id)}
           >
             <span className="nav-icon">{item.icon}</span>
             <span className="nav-text">{item.label}</span>
@@ -135,5 +169,6 @@ export default function Sidebar({
         )}
       </div>
     </aside>
+  </>
   );
 }

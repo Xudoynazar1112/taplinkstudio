@@ -7,6 +7,7 @@ export default function Topbar({
   isSaving,
   colorMode,
   onToggleColorMode,
+  onOpenMobileDrawer = () => {},
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -23,6 +24,19 @@ export default function Topbar({
   return (
     <header className="topbar">
       <div className="topbar-left">
+        {/* Mobile Drawer Hamburger Button */}
+        <button
+          type="button"
+          className="mobile-hamburger-btn"
+          onClick={onOpenMobileDrawer}
+          title="Menyuni ochish"
+          aria-label="Menyu"
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+
         <div className="topbar-breadcrumb">
           <span className="live-status-dot" title="Sahifa faol va ochiq" />
           <span className="tb-page-title">{activePage?.title || 'Sahifa'}</span>

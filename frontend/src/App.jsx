@@ -52,6 +52,9 @@ export default function App() {
   const [storyViewer, setStoryViewer] = useState(null); // { items, index }
   const [checkoutModal, setCheckoutModal] = useState(null); // { item }
 
+  // Mobile Drawer State
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+
   // Initial Data Load
   useEffect(() => {
     async function init() {
@@ -205,6 +208,8 @@ export default function App() {
         onOpenNewPageModal={() => setNewPageModalOpen(true)}
         onOpenAuthModal={() => setAuthModalOpen(true)}
         onLogout={handleLogout}
+        isMobileDrawerOpen={isMobileDrawerOpen}
+        onCloseMobileDrawer={() => setIsMobileDrawerOpen(false)}
       />
 
       {/* Main Content Area with Topbar */}
@@ -215,6 +220,7 @@ export default function App() {
           isSaving={isSaving}
           colorMode={colorMode}
           onToggleColorMode={toggleColorMode}
+          onOpenMobileDrawer={() => setIsMobileDrawerOpen(true)}
         />
 
         <main className="content-body">
@@ -265,6 +271,50 @@ export default function App() {
             />
           )}
         </main>
+
+        {/* Mobile Bottom Navigation Bar */}
+        <nav className="mobile-bottom-nav" aria-label="Mobil navigatsiya">
+          <button
+            type="button"
+            className={`mobile-nav-item ${activeTab === 'builder' ? 'active' : ''}`}
+            onClick={() => setActiveTab('builder')}
+          >
+            <span className="mb-nav-icon">🛠️</span>
+            <span className="mb-nav-label">Konstruktor</span>
+          </button>
+          <button
+            type="button"
+            className={`mobile-nav-item ${activeTab === 'templates' ? 'active' : ''}`}
+            onClick={() => setActiveTab('templates')}
+          >
+            <span className="mb-nav-icon">📱</span>
+            <span className="mb-nav-label">Shablon</span>
+          </button>
+          <button
+            type="button"
+            className={`mobile-nav-item ${activeTab === 'design' ? 'active' : ''}`}
+            onClick={() => setActiveTab('design')}
+          >
+            <span className="mb-nav-icon">🎨</span>
+            <span className="mb-nav-label">Dizayn</span>
+          </button>
+          <button
+            type="button"
+            className={`mobile-nav-item ${activeTab === 'crm' ? 'active' : ''}`}
+            onClick={() => setActiveTab('crm')}
+          >
+            <span className="mb-nav-icon">📋</span>
+            <span className="mb-nav-label">CRM</span>
+          </button>
+          <button
+            type="button"
+            className={`mobile-nav-item ${activeTab === 'analytics' || activeTab === 'settings' || activeTab === 'media' ? 'active' : ''}`}
+            onClick={() => setIsMobileDrawerOpen(true)}
+          >
+            <span className="mb-nav-icon">☰</span>
+            <span className="mb-nav-label">Menyu</span>
+          </button>
+        </nav>
       </div>
 
       {/* Auth Modal */}
