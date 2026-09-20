@@ -373,6 +373,27 @@ export default function PhonePreview({
             )}
 
             <div className="public-blocks-list">
+              {currentBlocks.length === 0 && (
+                <div className="phone-empty-canvas-state">
+                  <div className="empty-canvas-glow-icon">📱</div>
+                  <h4 className="empty-canvas-title">Sahifa hozircha bo'sh</h4>
+                  <p className="empty-canvas-desc">
+                    {previewMode === 'edit'
+                      ? "Sahifangizni yaratish uchun birinchi blokni qo'shing"
+                      : "Ushbu sahifada hozircha hech qanday blok mavjud emas"}
+                  </p>
+                  {previewMode === 'edit' && onInsertBlockAt && (
+                    <button
+                      type="button"
+                      className="btn-add-first-block"
+                      onClick={() => onInsertBlockAt(0)}
+                    >
+                      ➕ Blok qo'shish
+                    </button>
+                  )}
+                </div>
+              )}
+
               {currentBlocks.map((block, idx) => {
                 const isSelected = previewMode === 'edit' && selectedBlockId === block.id;
                 const isHidden = block.hidden;

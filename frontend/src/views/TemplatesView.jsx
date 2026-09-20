@@ -10,6 +10,7 @@ export default function TemplatesView({ activePage, onApplyTemplate }) {
   const [previewTemplate, setPreviewTemplate] = useState(TEMPLATES_CATALOG[0]);
   const [applying, setApplying] = useState(false);
   const [confirmModalTpl, setConfirmModalTpl] = useState(null);
+  const [mobileTemplatesTab, setMobileTemplatesTab] = useState('list'); // 'list' | 'preview'
 
   useEffect(() => {
     async function load() {
@@ -68,8 +69,26 @@ export default function TemplatesView({ activePage, onApplyTemplate }) {
 
   return (
     <div className="templates-view-container">
+      {/* Mobile Top Segmented Switcher */}
+      <div className="mobile-builder-segmented-bar">
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileTemplatesTab === 'list' ? 'active' : ''}`}
+          onClick={() => setMobileTemplatesTab('list')}
+        >
+          📋 Shablonlar ({filteredTemplates.length})
+        </button>
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileTemplatesTab === 'preview' ? 'active' : ''}`}
+          onClick={() => setMobileTemplatesTab('preview')}
+        >
+          📱 Jonli Ko'rinish
+        </button>
+      </div>
+
       {/* Left Column: Template Cards Catalog */}
-      <div className="templates-catalog-column">
+      <div className={`templates-catalog-column ${mobileTemplatesTab === 'preview' ? 'mobile-hidden-column' : ''}`}>
         <div className="view-page-header">
           <div className="header-title-actions">
             <div>
@@ -113,7 +132,12 @@ export default function TemplatesView({ activePage, onApplyTemplate }) {
               <div
                 key={tpl.id}
                 className={`template-card-box ${isSelected ? 'selected' : ''}`}
-                onClick={() => setPreviewTemplate(tpl)}
+                onClick={() => {
+                  setPreviewTemplate(tpl);
+                  if (window.innerWidth <= 768) {
+                    setMobileTemplatesTab('preview');
+                  }
+                }}
               >
                 <div className="template-card-top">
                   <div className="template-card-title-group">
@@ -152,6 +176,9 @@ export default function TemplatesView({ activePage, onApplyTemplate }) {
                     onClick={(e) => {
                       e.stopPropagation();
                       setPreviewTemplate(tpl);
+                      if (window.innerWidth <= 768) {
+                        setMobileTemplatesTab('preview');
+                      }
                     }}
                   >
                     {isSelected ? '👁️ Ko\'rilmoqda' : '👁️ Ko\'rish'}
@@ -176,7 +203,7 @@ export default function TemplatesView({ activePage, onApplyTemplate }) {
       </div>
 
       {/* Right Column: Interactive Phone Preview Frame */}
-      <div className="templates-phone-preview-column">
+      <div className={`templates-phone-preview-column ${mobileTemplatesTab === 'list' ? 'mobile-hidden-column' : ''}`}>
         <div className="sticky-phone-container">
           <div className="preview-column-header">
             <div className="preview-title-info">

@@ -14,6 +14,7 @@ export default function DesignView({ activePage, onUpdateTheme }) {
   const [activeTab, setActiveTab] = useState('presets'); // 'presets' | 'custom'
   const [assetModalOpen, setAssetModalOpen] = useState(false);
   const [assetPickerField, setAssetPickerField] = useState('backgroundImage');
+  const [mobileDesignTab, setMobileDesignTab] = useState('settings'); // 'settings' | 'preview'
 
   // Local copy of theme being edited
   const currentTheme = activePage?.theme || THEMES_CATALOG[0];
@@ -117,8 +118,26 @@ export default function DesignView({ activePage, onUpdateTheme }) {
 
   return (
     <div className="design-view-container">
+      {/* Mobile Top Segmented Switcher */}
+      <div className="mobile-builder-segmented-bar">
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileDesignTab === 'settings' ? 'active' : ''}`}
+          onClick={() => setMobileDesignTab('settings')}
+        >
+          🎨 Mavzu & Dizayn
+        </button>
+        <button
+          type="button"
+          className={`mb-segment-tab ${mobileDesignTab === 'preview' ? 'active' : ''}`}
+          onClick={() => setMobileDesignTab('preview')}
+        >
+          📱 Jonli Ko'rinish
+        </button>
+      </div>
+
       {/* Left Column: Theme Catalog & Customizer */}
-      <div className="design-editor-column">
+      <div className={`design-editor-column ${mobileDesignTab === 'preview' ? 'mobile-hidden-column' : ''}`}>
         <div className="view-page-header">
           <h2>Dizayn va Mavzular</h2>
           <p>Sahifangiz uchun zamonaviy tayyor mavzular, rasmli fonlar va maxsus ranglarni sozlang</p>
@@ -662,7 +681,7 @@ export default function DesignView({ activePage, onUpdateTheme }) {
       </div>
 
       {/* Right Column: Sticky Interactive Live Phone Preview */}
-      <div className="design-phone-preview-column">
+      <div className={`design-phone-preview-column ${mobileDesignTab === 'settings' ? 'mobile-hidden-column' : ''}`}>
         <div className="sticky-phone-container">
           <div className="preview-column-header">
             <div className="preview-title-info">

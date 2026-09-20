@@ -5422,14 +5422,18 @@ input:focus, textarea:focus, select:focus {
 
 .phone-mockup {
   width: 360px;
-  height: 680px;
-  background: #000000;
-  border-radius: 44px;
+  height: 720px;
+  max-height: calc(100vh - 140px);
+  background: #181c24;
+  border-radius: 46px;
   padding: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 4px #262626, 0 0 0 6px #171717;
+  box-shadow: 0 0 0 3px #374151, 0 0 0 5px #1e293b, 0 25px 60px -12px rgba(0, 0, 0, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .phone-notch {
@@ -5493,7 +5497,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 .phone-screen {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
   background: var(--page-bg);
   border-radius: 34px;
   position: relative;
@@ -5504,16 +5510,84 @@ input:focus, textarea:focus, select:focus {
 }
 
 .phone-content-scroll {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
   overflow-y: auto;
-  padding: 48px 16px 24px 16px;
+  overflow-x: hidden;
+  padding: 48px 16px 28px 16px;
   position: relative;
   z-index: 10;
-  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 
 .phone-content-scroll::-webkit-scrollbar {
-  display: none;
+  width: 4px;
+}
+
+.phone-content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phone-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+/* Empty Canvas Placeholder */
+.phone-empty-canvas-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 44px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  margin: 20px 0;
+  backdrop-filter: blur(8px);
+}
+
+.empty-canvas-glow-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.4));
+}
+
+.empty-canvas-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-color, #ffffff);
+  margin: 0 0 6px 0;
+}
+
+.empty-canvas-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  max-width: 240px;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.btn-add-first-block {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-add-first-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
 }
 
 .phone-bottom-bar {
@@ -6867,13 +6941,10 @@ input:focus, textarea:focus, select:focus {
   margin-top: 6px;
 }
 
-/* Media Queries for Mobile Responsiveness */
+/* Responsive Column Layout Adjustments */
 @media (max-width: 1024px) {
-  .templates-view-container, .design-view-container, .builder-view-container {
+  .templates-view-container, .design-view-container {
     grid-template-columns: 1fr;
-  }
-  .templates-phone-preview-column, .design-phone-preview-column, .builder-phone-preview-column {
-    display: none;
   }
 }
 
@@ -7981,20 +8052,29 @@ input:focus, textarea:focus, select:focus {
 /* iPhone 16 Pro Frame with Dynamic Island */
 .phone-mockup.device-iphone {
   width: 380px;
-  min-height: 760px;
+  height: 760px;
+  max-height: calc(100vh - 130px);
   border-radius: 54px;
   padding: 13px;
   background: #1f232b;
   box-shadow: 0 0 0 3px #374151, 0 25px 60px -12px rgba(0, 0, 0, 0.7), inset 0 0 6px 2px rgba(255, 255, 255, 0.1);
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .phone-mockup.device-iphone .phone-screen {
   border-radius: 44px;
-  min-height: 734px;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .phone-mockup.device-iphone .dynamic-island {
@@ -8033,19 +8113,28 @@ input:focus, textarea:focus, select:focus {
 /* iPad Pro / Tablet Frame */
 .phone-mockup.device-ipad {
   width: 540px;
-  min-height: 740px;
+  height: 740px;
+  max-height: calc(100vh - 130px);
   border-radius: 36px;
   padding: 14px;
   background: #1e2433;
   box-shadow: 0 0 0 2px #334155, 0 25px 60px -12px rgba(0, 0, 0, 0.7);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .phone-mockup.device-ipad .phone-screen {
   border-radius: 26px;
-  min-height: 712px;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .ipad-camera-dot {
@@ -8063,13 +8152,17 @@ input:focus, textarea:focus, select:focus {
 /* MacBook / Web Browser Frame */
 .phone-mockup.device-macbook {
   width: 620px;
-  min-height: 720px;
+  height: 720px;
+  max-height: calc(100vh - 130px);
   border-radius: 18px;
   padding: 0;
   background: #1e293b;
   box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 }
 
 .macbook-window-header {
@@ -8080,6 +8173,7 @@ input:focus, textarea:focus, select:focus {
   padding: 0 14px;
   gap: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
 .mac-traffic-lights {
@@ -8113,15 +8207,20 @@ input:focus, textarea:focus, select:focus {
 
 .phone-mockup.device-macbook .phone-screen {
   border-radius: 0 0 18px 18px;
-  min-height: 678px;
+  flex: 1 1 0;
+  min-height: 0;
+  height: calc(100% - 42px);
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Minimal Frameless */
 .phone-mockup.device-frameless {
   width: 380px;
-  min-height: 720px;
+  height: 720px;
+  max-height: calc(100vh - 130px);
   border-radius: 28px;
   padding: 0;
   background: transparent;
@@ -8129,13 +8228,20 @@ input:focus, textarea:focus, select:focus {
   border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 }
 
 .phone-mockup.device-frameless .phone-screen {
   border-radius: 28px;
-  min-height: 720px;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ==========================================================================
@@ -9347,7 +9453,9 @@ input:focus, textarea:focus, select:focus {
     max-width: 100% !important;
   }
 
-  .builder-phone-preview-column {
+  .builder-phone-preview-column,
+  .templates-phone-preview-column,
+  .design-phone-preview-column {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
@@ -9400,25 +9508,56 @@ input:focus, textarea:focus, select:focus {
     align-items: flex-start !important;
   }
 
-  .phone-mockup.device-iphone {
+  .phone-mockup,
+  .phone-mockup.device-iphone,
+  .phone-mockup.device-ipad,
+  .phone-mockup.device-macbook,
+  .phone-mockup.device-frameless {
     width: calc(100vw - 32px) !important;
-    max-width: 350px !important;
-    min-height: 640px !important;
+    max-width: 360px !important;
+    height: min(680px, calc(100vh - 190px)) !important;
+    min-height: 520px !important;
+    max-height: 82vh !important;
     border-radius: 46px !important;
-    padding: 10px !important;
+    padding: 12px !important;
     background: #181c24 !important;
-    box-shadow: 0 0 0 3px #374151, 0 16px 40px rgba(0, 0, 0, 0.75), inset 0 0 6px rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 0 0 3px #475569, 0 0 0 6px #1e293b, 0 20px 48px rgba(0, 0, 0, 0.85), inset 0 0 8px rgba(255, 255, 255, 0.15) !important;
     position: relative !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
-  .phone-mockup.device-iphone .phone-screen {
+  .phone-screen,
+  .phone-mockup.device-iphone .phone-screen,
+  .phone-mockup.device-ipad .phone-screen,
+  .phone-mockup.device-macbook .phone-screen,
+  .phone-mockup.device-frameless .phone-screen {
     border-radius: 36px !important;
-    min-height: 620px !important;
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
     overflow: hidden !important;
     position: relative !important;
+    background: var(--page-bg) !important;
+  }
+
+  .phone-content-scroll {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 44px 14px 28px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
   }
 
   .phone-mockup.device-iphone .dynamic-island {
@@ -9549,20 +9688,12 @@ input:focus, textarea:focus, select:focus {
     grid-template-columns: 1fr !important;
   }
 
-  .templates-preview-column {
-    display: none !important;
-  }
-
   .templates-cards-grid {
     grid-template-columns: 1fr !important;
   }
 
   .design-view-container {
     grid-template-columns: 1fr !important;
-  }
-
-  .design-phone-column {
-    display: none !important;
   }
 
   .fonts-picker-grid,
